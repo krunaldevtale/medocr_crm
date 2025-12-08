@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link href="../../public/css/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+  <body
+    class="min-h-screen bg-white flex flex-col justify-center items-center relative px-4 sm:px-8 md:px-12 lg:overflow-hidden"
+  >
+    <!-- Background Design Top Left -->
+    <div class="hidden absolute top-0 left-0 sm:flex gap-2 items-center z-0">
+      <img src="/public/images/left curve.svg" alt="" />
+      <div
+        class="bg-steel-blue w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full"
+      ></div>
+      <div
+        class="bg-golden-orange w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 rounded-full mb-16 md:mb-24"
+      ></div>
+    </div>
+
+    <!-- Background Design Bottom Right -->
+    <div
+      class="hidden absolute -bottom-0 right-0 -rotate-180 sm:flex gap-2 items-center z-0"
+    >
+      <img src="/public/images/left curve.svg" alt="" />
+      <div
+        class="bg-steel-blue w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full"
+      ></div>
+      <div
+        class="bg-golden-orange w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9 rounded-full mb-16 md:mb-24"
+      ></div>
+    </div>
+
+    <!--Mobile Background Design Bottom Right -->
+    <div
+      class="absolute right-0 -bottom-50 flex gap-2 items-center z-0 sm:hidden"
+    >
+      <img src="/public/images/mobile-curve-bottom.svg" class="mt-30" />
+      <div
+        class="bg-light-primary-color w-15 h-15 rounded-full mt-10 mr-3"
+      ></div>
+
+      <img src="/public/images/mobile-curve.svg" alt="" class="mt-4" />
+    </div>
+    <!--Image : Displayed only on Mobile-->
+    <div class="flex justify-center items-center sm:hidden">
+      <img src="/public/images/mobile-register.svg" class="w-72 h-52" />
+    </div>
+    <!-- Login Container -->
+    <div
+      class="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl sm:pt-12 md:pt-20 text-primary-color z-10"
+    >
+      <p
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-center pt-4 md:pt-0 lg:pt-0"
+      >
+        Log In
+      </p>
+
+      <form
+        id="login-form"
+        class="mt-8 flex flex-col sm:gap-6"
+        action="/"
+        method="post"
+      >
+        <!-- Username -->
+        <div class="relative w-full">
+          <label
+            class="hidden sm:block absolute left-3 -top-0.5 bg-white px-1 text-xs z-10"
+            >User Name</label
+          >
+          <input
+            id="userName"
+            type="text"
+            name="user-name"
+            placeholder=""
+            class="mt-2 block w-full rounded-md border border-primary-color p-4 text-sm focus:outline-none placeholder:text-blue-teal shadow-lg sm:shadow-none"
+          />
+          <div
+            id="user-name-error"
+            class="text-xs text-dark-red min-h-[1rem]"
+          ></div>
+        </div>
+
+        <!-- Password -->
+        <div class="w-full relative">
+          <label
+            class="hidden sm:block absolute left-3 -top-0.5 bg-white px-1 text-xs z-10"
+            >Password</label
+          >
+          <div class="relative">
+            <input
+              id="Password"
+              type="password"
+              name="Password"
+              placeholder=""
+              class="mt-2 block w-full rounded-md border border-primary-color p-4 text-sm focus:outline-none placeholder:text-blue-teal"
+            />
+            <span
+              data-target="Password"
+              class="togglePassword material-symbols-outlined absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-primary-color"
+            >
+              visibility
+            </span>
+          </div>
+
+          <!-- Error & Forgot -->
+          <div class="flex justify-between items-start mt-1">
+            <div
+              id="Password-error"
+              class="text-xs text-dark-red min-h-[1rem]"
+            ></div>
+            <div id="forgot-password-action">
+              <a href="#" id="forgotPassword-link">
+                <span
+                  class="font-normal text-xs text-primary-color hover:underline"
+                >
+                  Forgot Password?
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remember Me -->
+        <div class="hidden sm:flex gap-4 items-center pl-1">
+          <input
+            type="checkbox"
+            name="remember-me"
+            id="remember-me"
+            class="w-4 h-4 cursor-pointer"
+          />
+          <span class="font-normal text-sm sm:text-base">Remember Me</span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-container flex flex-col gap-4 pt-4">
+          <a
+            href="#"
+            type="submit"
+            class="z-10 font-semibold text-center text-base hover:bg-primary-color hover:text-white text-primary-color p-4 rounded-lg border-2 border-primary-color cursor-pointer transition duration-200 active:bg-primary-color active:text-white"
+          >
+            Log in
+          </a>
+          <div class="flex items-center gap-2 pt-4 sm:hidden">
+            <hr class="flex-1 border-t-2 border-primary-color ml-10" />
+            <p class="font-semibold text-base text-primary-color">Or</p>
+            <hr class="flex-1 border-t-2 border-primary-color mr-10" />
+          </div>
+          <a
+            href="./Welcome.html"
+            type="button"
+            class="font-semibold text-center text-base hover:bg-primary-color hover:text-white text-primary-color p-4 rounded-lg border-2 border-primary-color cursor-pointer transition duration-200 active:bg-primary-color active:text-white"
+          >
+            Register
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+    <script src="/public/js/auth/login.js"></script>
+    <script src="/public/js/toaster.js"></script>
+  </body>
+</html>
