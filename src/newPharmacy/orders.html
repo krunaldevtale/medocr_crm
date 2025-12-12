@@ -543,16 +543,35 @@
                                             </div>
                                         </div>
                                         <!-- Progress Bar -->
-                                        <div class="relative">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <span class="text-xs font-medium text-ebony">Enquiry</span>
-                                                <span class="text-xs font-medium text-ebony">Ongoing</span>
-                                                <span class="text-xs font-medium text-ebony">Completed</span>
-                                                <span class="text-xs font-medium text-ebony">Cancelled/Expired</span>
+                                        <div class="enquiredDetail">
+                                            <div class="flex flex-col mt-4 py-4 gap-4">
+                                                <!-- Progress Bar -->
+                                                <div class="flex justify-center items-center gap-1">
+                                                    <!-- Enquiry -->
+                                                    <div class="w-2 h-2 bg-deep-teal-green rounded-full"></div>
+                                                    <div class="w-[138px] h-0.5 bg-deep-teal-green"></div>
+
+                                                    <!-- Appointment -->
+                                                    <div class="w-2 h-2 bg-deep-teal-green rounded-full"></div>
+                                                    <div class="w-[138px] h-0.5 bg-deep-teal-green"></div>
+
+                                                    <!-- Completed -->
+                                                    <div class="w-2 h-2 bg-blue-haze rounded-full"></div>
+                                                    <div class="w-[138px] h-0.5 bg-blue-haze"></div>
+
+                                                    <!-- Cancel/Expired -->
+                                                    <div class="w-2 h-2 bg-blue-haze rounded-full"></div>
+                                                </div>
+
+                                                <!-- Labels (text colors unchanged) -->
+                                                <div class="flex items-center justify-between mx-10">
+                                                    <p class="pl-6 text-ebony font-normal text-sm">Enquiry</p>
+                                                    <p class="pl-2 text-ebony font-normal text-sm">Ongoing
+                                                    </p>
+                                                    <p class="text-arctic-gray font-normal text-sm">Completed</p>
+                                                    <p class="text-arctic-gray font-normal text-sm">Cancel/Expired</p>
+                                                </div>
                                             </div>
-                                            <!-- <div class="w-full h-1 bg-grayish-gray rounded-full overflow-hidden">
-                                            <div class="h-full bg-deep-teal-green rounded-full" style="width: 50%"></div>
-                                        </div> -->
                                         </div>
                                         <!-- Medicine Items -->
                                         <div class="space-y-3">
@@ -669,22 +688,24 @@
                                                 show"</div>
                                             <input type="radio" class="w-5 h-5 accent-vivid-blue cursor-pointer">
                                         </div>
+
                                         <div class="flex items-center justify-between mb-3">
                                             <p class="text-ebony font-semibold text-sm">Rate your experience</p>
 
                                             <div id="starContainer" class="flex items-center gap-1">
                                                 <span
-                                                    class="star material-symbols-outlined text-star-yellow text-2xl cursor-pointer">star_outline</span>
+                                                    class="star material-symbols-outlined text-2xl cursor-pointer">star_outline</span>
                                                 <span
-                                                    class="star material-symbols-outlined text-star-yellow text-2xl cursor-pointer">star_outline</span>
+                                                    class="star material-symbols-outlined text-2xl cursor-pointer">star_outline</span>
                                                 <span
-                                                    class="star material-symbols-outlined text-star-yellow text-2xl cursor-pointer">star_outline</span>
+                                                    class="star material-symbols-outlined text-2xl cursor-pointer">star_outline</span>
                                                 <span
-                                                    class="star material-symbols-outlined text-star-yellow text-2xl cursor-pointer">star_outline</span>
+                                                    class="star material-symbols-outlined text-2xl cursor-pointer">star_outline</span>
                                                 <span
-                                                    class="star material-symbols-outlined text-star-yellow text-2xl cursor-pointer">star_outline</span>
+                                                    class="star material-symbols-outlined text-2xl cursor-pointer">star_outline</span>
                                             </div>
                                         </div>
+
                                         <div class="flex items-center justify-between mb-3 gap-3">
                                             <div class="text-ebony font-semibold text-sm">Comments</div>
                                             <input type="text" class="w-[501px] h-[48px] rounded-[16px] bg-dropdown px-4 pr-10 
@@ -702,7 +723,8 @@
                                                     class="w-[48px] h-[48px]" />
                                             </div>
                                             <div>
-                                                <p class="text-blue-gray font-regular text-base mb-1">Need help with anything
+                                                <p class="text-blue-gray font-regular text-base mb-1">Need help with
+                                                    anything
                                                     ? </p>
                                                 <p class="text-ebony font-semibold text-base">Call: (239) 555-0108</p>
                                             </div>
@@ -934,19 +956,24 @@
                                                 <span class="text-ebony font-regular text-xs">Share</span>
                                             </button>
                                         </div>
-
                                         <!-- Progress Bar -->
-                                        <div class="relative">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <span class="text-xs font-medium text-ebony">Enquiry</span>
-                                                <span class="text-xs font-medium text-ebony">Ongoing</span>
-                                                <span class="text-xs font-medium text-ebony">Completed</span>
-                                                <span class="text-xs font-medium text-ebony">Cancelled/Expired</span>
+                                        <div class="enquiredDetail">
+                                            <div class="flex flex-col mt-4 py-4 gap-4">
+                                                <div class=" flex justify-center items-center gap-1">
+                                                    <div class="w-2 h-2 bg-deep-teal-green rounded-full"></div>
+                                                    <div class="w-[192px] h-0.5 bg-deep-teal-green"></div>
+                                                    <div class="w-2 h-2 bg-deep-teal-green rounded-full"></div>
+                                                    <div class="w-[192px] h-0.5 bg-deep-teal-green"></div>
+                                                    <div class="w-2 h-2 bg-deep-teal-green rounded-full"></div>
+                                                </div>
+                                                <div class="flex items-center justify-between mx-20">
+                                                    <p class="text-ebony font-normal text-sm">Enquiry</p>
+                                                    <p class="text-ebony font-normal text-sm">Appointment</p>
+                                                    <p class="text-ebony font-normal text-sm">Completed</p>
+                                                </div>
                                             </div>
-                                            <!-- <div class="w-full h-1 bg-grayish-gray rounded-full overflow-hidden">
-                                            <div class="h-full bg-deep-teal-green rounded-full" style="width: 50%"></div>
-                                        </div> -->
                                         </div>
+
                                         <!-- Medicine Items -->
                                         <div class="space-y-3">
                                             <!-- Item 1 -->
@@ -1068,7 +1095,8 @@
                                                     class="w-[48px] h-[48px]" />
                                             </div>
                                             <div>
-                                                <p class="text-blue-gray font-regular text-base mb-1">Need help with anything
+                                                <p class="text-blue-gray font-regular text-base mb-1">Need help with
+                                                    anything
                                                     ? </p>
                                                 <p class="text-ebony font-semibold text-base">Call: (239) 555-0108</p>
                                             </div>
@@ -1316,17 +1344,23 @@
                                         </div>
 
                                         <!-- Progress Bar -->
-                                        <div class="relative">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <span class="text-xs font-medium text-ebony">Enquiry</span>
-                                                <span class="text-xs font-medium text-ebony">Ongoing</span>
-                                                <span class="text-xs font-medium text-ebony">Completed</span>
-                                                <span class="text-xs font-medium text-ebony">Cancelled/Expired</span>
+                                        <div class="enquiredDetail">
+                                            <div class="flex flex-col mt-4 py-4 gap-4">
+                                                <div class=" flex justify-center items-center gap-1">
+                                                    <div class="w-2 h-2 bg-deep-teal-green rounded-full"></div>
+                                                    <div class="w-[192px] h-0.5 bg-deep-teal-green"></div>
+                                                    <div class="w-2 h-2 bg-deep-teal-green rounded-full"></div>
+                                                    <div class="w-[192px] h-0.5 bg-deep-teal-green"></div>
+                                                    <div class="w-2 h-2 bg-deep-teal-green rounded-full"></div>
+                                                </div>
+                                                <div class="flex items-center justify-between mx-20">
+                                                    <p class="text-ebony font-normal text-sm">Enquiry</p>
+                                                    <p class="text-ebony font-normal text-sm">Appointment</p>
+                                                    <p class="text-ebony font-normal text-sm">No Show</p>
+                                                </div>
                                             </div>
-                                            <!-- <div class="w-full h-1 bg-grayish-gray rounded-full overflow-hidden">
-                                            <div class="h-full bg-deep-teal-green rounded-full" style="width: 50%"></div>
-                                        </div> -->
                                         </div>
+
                                         <!-- Medicine Items -->
                                         <div class="space-y-3">
                                             <!-- Item 1 -->
@@ -1416,7 +1450,8 @@
                                         <div class="flex items-center justify-center gap-2">
                                             <p class="text-center text-base text-piano-black font-bold">You missed
                                                 the Order</p>
-                                            <img src="/public/images/missed.svg" alt="missed icon" class="w-[18px] h-[18px]" />
+                                            <img src="/public/images/missed.svg" alt="missed icon"
+                                                class="w-[18px] h-[18px]" />
                                         </div>
                                         <div class="flex items-center justify-between">
                                             <span class="text-ebony font-regular text-sm">Total <span
@@ -1439,7 +1474,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!--Review Summary-->
                                     <div class="border border-light-grayish-blue rounded-[12px] p-4">
                                         <div class="">
@@ -1459,7 +1494,8 @@
                                                     class="w-[48px] h-[48px]" />
                                             </div>
                                             <div>
-                                                <p class="text-blue-gray font-regular text-base mb-1">Need help with anything
+                                                <p class="text-blue-gray font-regular text-base mb-1">Need help with
+                                                    anything
                                                     ? </p>
                                                 <p class="text-ebony font-semibold text-base">Call: (239) 555-0108</p>
                                             </div>

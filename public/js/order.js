@@ -285,20 +285,42 @@ $(".tab-btn-rewards").on("click", function () {
 });
 
 
-// Star rating click function
+// Inject CSS for Material Symbols fill directly into the page
+$("<style>")
+    .prop("type", "text/css")
+    .html(`
+        .material-symbols-outlined.filled {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+    `)
+    .appendTo("head");
+
+
+// ⭐ Star rating click function
 $(".star").on("click", function () {
     let index = $(this).index();
 
     $(".star").each(function (i) {
         if (i <= index) {
             $(this)
-                .text("star")   // ← completely filled star
-                .removeClass("text-muted-blue")
-                .addClass("text-yellow-400");
+                .text("star")                     // Filled star
+                .addClass("filled text-yellow-400")
+                .removeClass("text-muted-blue");
         } else {
             $(this)
-                .text("star_outline")
-                .removeClass("text-yellow-400")
+                .text("star_outline")             // Outline star
+                .removeClass("filled text-yellow-400")
                 .addClass("text-muted-blue");
         }
     });
