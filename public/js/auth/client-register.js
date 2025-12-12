@@ -233,195 +233,183 @@ $(document).ready(function () {
       $options.addClass("hidden");
     }
   });
+  
+  //Dropdowns code
   const dropdownConfig = {
-    singleSelect: ["Timing", "Opening Time", "Closing Time","Opening Days","Type of Medical Provider","Home Visit","Experience","Gender","Specialization"],
-    multiSelect: ["Services", "Facilities"],
-  };
-  function isSingleSelect($dropdown) {
-    const labelText = $dropdown.find("> label").text();
-    return dropdownConfig.singleSelect.some((keyword) =>
-      labelText.includes(keyword)
-    );
+  singleSelect: ["Timing", "Opening Time", "Closing Time", "Opening Days", "Type of Medical Provider", "Home Visit", "Experience", "Gender", "Specialization","Advertiser Type"],
+  multiSelect: ["Services", "Facilities"],
+};
+function isSingleSelect($dropdown) {
+  const labelText = $dropdown.find("> label").text();
+  return dropdownConfig.singleSelect.some((keyword) =>
+    labelText.includes(keyword)
+  );
+}
+function getPlaceholderText($dropdown) {
+  const labelText = $dropdown.find("> label").text();
+  if (labelText.includes("Timing") || labelText.includes("Time")) {
+    return "Select Time";
   }
-  function getPlaceholderText($dropdown) {
-    const labelText = $dropdown.find("> label").text();
-    if (labelText.includes("Timing") || labelText.includes("Time")) {
-      return "Select Time";
-    }
-    if (labelText.includes("Services") || labelText.includes("Service")) {
-      return "Select Service";
-    }
-    if (labelText.includes("Facilities") || labelText.includes("Facility")) {
-      return "Select Facility";
-    }
-    // Default
-    return "Select Option";
+  if (labelText.includes("Services") || labelText.includes("Service")) {
+    return "Select Service";
+  }
+  if (labelText.includes("Facilities") || labelText.includes("Facility")) {
+    return "Select Facility";
+  }
+  return "Select Option";
+}
+$(".dropdown-btn").on("click", function (e) {
+  e.stopPropagation();
+  const $dropdown = $(this).closest(".dropdown");
+  const $currentOption = $dropdown.find(".dropdown-option");
+  $(".dropdown-option").not($currentOption).hide();
+  $(".dropdown-arrow")
+    .not($(this).find(".dropdown-arrow"))
+    .removeClass("rotate-180");
+  $currentOption.toggle();
+  $(this).find(".dropdown-arrow").toggleClass("rotate-180");
+});
+
+// Handle checkbox selection
+$(document).on("change", ".dropdown-option input[type='checkbox']", function (e) {
+  e.stopPropagation();
+  const $dropdown = $(this).closest(".dropdown");
+  if (isSingleSelect($dropdown)) {
+    $dropdown.find("input[type='checkbox']").not(this).prop("checked", false);
   }
 
-  // Toggle dropdown visibility
-  $(".dropdown-btn").on("click", function (e) {
-    e.stopPropagation();
-    const $dropdown = $(this).closest(".dropdown");
-    const $currentOption = $dropdown.find(".dropdown-option");
+  updateSelectedText($dropdown);
+});
 
-    // Close all other dropdowns
-    $(".dropdown-option").not($currentOption).hide();
-    $(".dropdown-arrow")
-      .not($(this).find(".dropdown-arrow"))
-      .removeClass("rotate-180");
 
-    // Toggle current dropdown
-    $currentOption.toggle();
-    $(this).find(".dropdown-arrow").toggleClass("rotate-180");
+$(".dropdown-option").on("click", function (e) {
+  e.stopPropagation();
+});
+$(document).on("click", ".dropdown-option label", function (e) {
+  e.stopPropagation();
+  if ($(this).text().trim() === "Type...") {
+    showCustomInput($(this).closest(".dropdown"));
+    return;
+  }
+  let checkbox = $(this).prev('input[type="checkbox"]');
+  if (checkbox.length === 0) {
+    checkbox = $(this).next('input[type="checkbox"]');
+  }
+  if (checkbox.length) {
+    checkbox.prop("checked", !checkbox.prop("checked")).trigger("change");
+  }
+});
+function showCustomInput($dropdown) {
+  const $typeOption = $dropdown.find("label:contains('Type...')").parent();
+  if ($typeOption.find("input[type='text']").length > 0) {
+    $typeOption.find("input[type='text']").focus();
+    return;
+  }
+  const $input = $(
+    '<input type="text" class="custom-input flex-1 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-Royal-indigo" placeholder="Enter custom service...">'
+  );
+
+  $typeOption.html("").append($input);
+  $input.focus();
+  $input.on("blur keypress", function (e) {
+    if (e.type === "blur" || (e.type === "keypress" && e.which === 13)) {
+      const value = $(this).val().trim();
+
+      if (value) {
+        const customId = "custom_" + Date.now();
+        const $newOption = $(`
+          <div class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer custom-service">
+            <input type="checkbox" id="${customId}" class="mr-2 accent-Royal-indigo" checked>
+            <label for="${customId}" class="flex-1">${value}</label>
+            <span class="material-symbols-outlined text-sm text-red-500 remove-custom cursor-pointer">close</span>
+          </div>
+        `);
+        $typeOption.before($newOption);
+        $typeOption.html('<label class="flex-1">Type...</label>');
+        attachCustomOptionHandlers($newOption, $dropdown);
+        updateSelectedText($dropdown);
+      } else {
+        $typeOption.html('<label class="flex-1">Type...</label>');
+      }
+    }
   });
 
-  // Handle checkbox selection
-  $(".dropdown-option input[type='checkbox']").on("change", function (e) {
+  // Prevent input click from closing dropdown
+  $input.on("click", function (e) {
     e.stopPropagation();
-    const $dropdown = $(this).closest(".dropdown");
+  });
+}
 
-    // Check if this is a single-select dropdown
+// Attach handlers to custom options
+function attachCustomOptionHandlers($option, $dropdown) {
+  $option.find("input[type='checkbox']").on("change", function (e) {
+    e.stopPropagation();
     if (isSingleSelect($dropdown)) {
-      // Uncheck all other checkboxes in this dropdown
-      $dropdown.find("input[type='checkbox']").not(this).prop("checked", false);
+      $dropdown
+        .find("input[type='checkbox']")
+        .not(this)
+        .prop("checked", false);
     }
 
     updateSelectedText($dropdown);
   });
 
-  // Prevent dropdown from closing when clicking inside options area
-  $(".dropdown-option").on("click", function (e) {
+  // Handle label click
+  $option.find("label").on("click", function (e) {
     e.stopPropagation();
-  });
-
-  // Prevent label click from bubbling
-  $(".dropdown-option label").on("click", function (e) {
-    e.stopPropagation();
-
-    // Check if this is the "Type..." option
-    if ($(this).text().trim() === "Type...") {
-      showCustomInput($(this).closest(".dropdown"));
-      return;
+    let checkbox = $(this).prev('input[type="checkbox"]');
+    if (checkbox.length === 0) {
+      checkbox = $(this).next('input[type="checkbox"]');
     }
-
-    const checkbox = $(this).prev('input[type="checkbox"]');
     if (checkbox.length) {
       checkbox.prop("checked", !checkbox.prop("checked")).trigger("change");
     }
   });
 
-  // Show custom input for "Type..." option
-  function showCustomInput($dropdown) {
-    const $typeOption = $dropdown.find("label:contains('Type...')").parent();
-
-    // Check if input already exists
-    if ($typeOption.find("input[type='text']").length > 0) {
-      $typeOption.find("input[type='text']").focus();
-      return;
-    }
-
-    // Create custom input
-    const $input = $(
-      '<input type="text" class="custom-input flex-1 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-Royal-indigo" placeholder="Enter custom service...">'
-    );
-
-    $typeOption.html("").append($input);
-    $input.focus();
-
-    // Handle input completion
-    $input.on("blur keypress", function (e) {
-      if (e.type === "blur" || (e.type === "keypress" && e.which === 13)) {
-        const value = $(this).val().trim();
-
-        if (value) {
-          // Create a new checkbox option with the custom value
-          const customId = "custom_" + Date.now();
-          const $newOption = $(`
-                    <div class="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer custom-service">
-                        <input type="checkbox" id="${customId}" class="mr-2 accent-Royal-indigo" checked>
-                        <label for="${customId}" class="flex-1">${value}</label>
-                        <span class="material-symbols-outlined text-sm text-red-500 remove-custom cursor-pointer">close</span>
-                    </div>
-                `);
-
-          // Insert before the "Type..." option
-          $typeOption.before($newOption);
-
-          // Reset the "Type..." option
-          $typeOption.html('<label class="flex-1">Type...</label>');
-
-          // Attach event handlers to the new option
-          attachCustomOptionHandlers($newOption, $dropdown);
-
-          // Update selected text
-          updateSelectedText($dropdown);
-        } else {
-          // Reset the "Type..." option if nothing entered
-          $typeOption.html('<label class="flex-1">Type...</label>');
-        }
-      }
-    });
-
-    // Prevent input click from closing dropdown
-    $input.on("click", function (e) {
-      e.stopPropagation();
-    });
-  }
-
-  // Attach handlers to custom options
-  function attachCustomOptionHandlers($option, $dropdown) {
-    // Handle checkbox change
-    $option.find("input[type='checkbox']").on("change", function (e) {
-      e.stopPropagation();
-
-      // Check if this is a single-select dropdown
-      if (isSingleSelect($dropdown)) {
-        $dropdown
-          .find("input[type='checkbox']")
-          .not(this)
-          .prop("checked", false);
-      }
-
-      updateSelectedText($dropdown);
-    });
-
-    // Handle label click
-    $option.find("label").on("click", function (e) {
-      e.stopPropagation();
-      const checkbox = $(this).prev('input[type="checkbox"]');
-      checkbox.prop("checked", !checkbox.prop("checked")).trigger("change");
-    });
-
-    // Handle remove button
-    $option.find(".remove-custom").on("click", function (e) {
-      e.stopPropagation();
-      $option.remove();
-      updateSelectedText($dropdown);
-    });
-  }
-
-  // Update selected text based on checked items
-  function updateSelectedText($dropdown) {
-    const $checkedBoxes = $dropdown.find(
-      ".dropdown-option input[type='checkbox']:checked"
-    );
-    const $selectedValue = $dropdown.find(".dropdown-btn .selected-value");
-
-    if ($checkedBoxes.length === 0) {
-      $selectedValue.text(getPlaceholderText($dropdown));
-    } else if ($checkedBoxes.length === 1) {
-      const labelText = $checkedBoxes.first().next("label").text().trim();
-      $selectedValue.text(labelText);
-    } else {
-      $selectedValue.text($checkedBoxes.length + " selected");
-    }
-  }
-
-  // Close dropdowns when clicking outside
-  $(document).on("click", function () {
-    $(".dropdown-option").hide();
-    $(".dropdown-arrow").removeClass("rotate-180");
+  // Handle remove button
+  $option.find(".remove-custom").on("click", function (e) {
+    e.stopPropagation();
+    $option.remove();
+    updateSelectedText($dropdown);
   });
+}
+
+// Update selected text based on checked items
+function updateSelectedText($dropdown) {
+  const $checkedBoxes = $dropdown.find(
+    ".dropdown-option input[type='checkbox']:checked"
+  );
+  const $selectedValue = $dropdown.find(".dropdown-btn .selected-value");
+
+  if ($checkedBoxes.length === 0) {
+    $selectedValue.text(getPlaceholderText($dropdown));
+  } else if ($checkedBoxes.length === 1) {
+    let labelText = $checkedBoxes.first().prev("label").text().trim();
+    if (!labelText) {
+      labelText = $checkedBoxes.first().next("label").text().trim();
+    }
+    $selectedValue.text(labelText);
+  } else {
+    $selectedValue.text($checkedBoxes.length + " selected");
+  }
+}
+
+// Handle simple dropdown (non-checkbox) selection
+$('.dropdown-option div:not(:has(input[type="checkbox"]))').on('click', function(e) {
+  e.stopPropagation();
+  const selectedText = $(this).text().trim();
+  const $dropdown = $(this).closest('.dropdown');
+  $dropdown.find('.dropdown-btn .selected-value').text(selectedText);
+  $dropdown.find('.select-dropdown').val(selectedText);
+  $dropdown.find('.dropdown-option').hide();
+  $dropdown.find(".dropdown-arrow").removeClass("rotate-180");
+});
+
+// Close dropdowns when clicking outside
+$(document).on("click", function () {
+  $(".dropdown-option").hide();
+  $(".dropdown-arrow").removeClass("rotate-180");
+});
   // password hide/unhide
   $(".togglePassword").on("click", function () {
     const targetId = $(this).data("target");
