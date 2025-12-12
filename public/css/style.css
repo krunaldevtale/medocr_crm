@@ -10,7 +10,9 @@
   --color-light-sea-green-opacity: #3AAFA926;
   --color-light-sea-green-opacity-1: #3AAFA980;
   --color-light-sea-green-opacity-2: #3AAFA908;
-
+  --color-dodger-blue-deep: #1167D9;
+  --color-blue-ribbon: #277DEB;
+  --color-cobalt-blue-deep:#084BA9;
   /* Teal Variants */
   --color-mist-teal: #3AAFA90A;
   --color-teal-veil: #3AAFA91A;
@@ -43,7 +45,9 @@
   --color-emerald-green: #22C55F;
   --color-caribbean-green: #00BC7D;
   --color-light-mint-green: #DCFCE6;
-
+  --color-leaf-green:#009966;
+  --color-light-green:#00C950;
+  --color-dark-green:#016630;
   /* Orange & Peach Variants */
   --color-peach: #FEF2E5;
   --color-burnt-orange: #CD6200;
@@ -244,7 +248,26 @@
   --color-ghost-white: #F7F9FC;
   --color-snow: #F7F8F9;
   --color-frost-white: #F3F4F6;
-
+  --color-mint-leaf: #22C55E;
+  --color-bright-red: #EF4444;
+  --color-dark-navy:#101828;
+  --color-charcoal-gray:#4A5565;
+  --color-crimson-red:#FB2C36;
+  --color-deep-amber:#BB4D004D;
+  --color-soft-ivory:#FFFBEB;
+  --color-copper-orange:#BB4D00;
+  --color-cinnamon-orange:#BB4D00CC;
+  --color-warm-tangerine:#E17100;
+  --color-pastel-seafoam:#B9F8CF1A;
+  --color-blue-charcoal:#212B36;
+  --color-seafoam:#B9F8CF;
+  --color-soft-pastel-mint:#DCFCE780;
+  --color-pastel-mint:#DCFCE7;
+  --color-cool-ice-gray:#DFE3E8;
+  --color-cool-steel-blue:#919EAB52;
+  --color-ocean-teal:#08817814;
+  --color-pale-ice-blue:#C8DAEA;
+  --color-slate-steel-blue:#62748E;
   /* Box Shadows */
   --box-shadow-1: 4px 4px 10px 4px #3AAFA926;
   --box-shadow-2: 0px 4px 4px 0px #00000040;
@@ -257,8 +280,8 @@
   --box-shadow-9: 4px 4px 10px 2px #00000026;
   --box-shadow-10: 1px 1px 8px 0px #00000024 inset;
   --box-shadow-11: 0px 1px 2px 0px #919EAB1F;
-  --box-shadow-12: 0px 1px 8px 0px #00000040;
-
+  --box-shadow-12: 0px 1px 2px -1px #0000001A,0px 1px 3px 0px #0000001A;
+  --box-shadow-13:1px 1px 8px 0px #00000014 inset,-1px -1px 8px 0px #00000014 inset;
 
   /* Radio Button Colors */
   --radio-border-color: teal;
@@ -1225,4 +1248,14 @@ input[type="time"] {
   .show-sidebar-toggle {
     left: 0;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
