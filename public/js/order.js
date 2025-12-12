@@ -273,3 +273,33 @@ $('.amount-btn').on('click', function () {
   document.documentElement.style.setProperty('--radio-border-color', bgColor);
   document.documentElement.style.setProperty('--radio-fill-color', bgColor);
 });
+
+$(".tab-btn-rewards").on("click", function () {
+    $(".tab-btn-rewards").removeClass("active-tab-rewards text-dark-gray border-b-2 border-deep-teal-green")
+                         .addClass("text-light-gray1");
+    $(this).addClass("active-tab-rewards text-dark-gray border-b-2 border-deep-teal-green")
+           .removeClass("text-light-gray1");
+    $(".tab-content").addClass("hidden");
+    let tab = $(this).data("tab");
+    $("." + tab).removeClass("hidden");
+});
+
+
+// Star rating click function
+$(".star").on("click", function () {
+    let index = $(this).index();
+
+    $(".star").each(function (i) {
+        if (i <= index) {
+            $(this)
+                .text("star")   // ← completely filled star
+                .removeClass("text-muted-blue")
+                .addClass("text-yellow-400");
+        } else {
+            $(this)
+                .text("star_outline")
+                .removeClass("text-yellow-400")
+                .addClass("text-muted-blue");
+        }
+    });
+});
